@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>早晚安图片生成-pikachu</title>
+	</head>
+	<style>
+		.tdp{
+			font-weight: bold;
+			background-color: coral;
+			color: white;
+			text-align: center;
+		}
+		
+		.inp{
+			width: 100%; 
+			height:26px;
+		}
+		body{
+			padding: 20px;
+		}
+		
+	</style>
+	<body>
+		<h2> 早晚安图片生成-pikachu </h2>
+
+
+
+
+
+		<b> 接口详情:
+			<font color="cornflowerblue">out_image.php</font> : POST/GET </b><br><br>
+		<table border="1" cellpadding="10" cellspacing="0">
+
+			<tr class="tdp">
+					<td>字段</td>
+					<td>字段类型</td>
+					<td>字段介绍</td>
+					<td>取值范围</td>
+					<td>字段可空</td>
+			</tr>
+			
+			<tr>
+				<td>img</td>
+				<td>string</td>
+				<td>背景图片</td>
+				<td>URL</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>w</td>
+				<td>float</td>
+				<td>生成图片的宽</td>
+				<td>[400,1080]</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>h</td>
+				<td>float</td>				
+				<td>生成图片的高</td>
+				<td>[500,1920]</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>t1</td>
+				<td>string</td>
+				<td>问候语 （如：早上好鸭，晚安）<font color="#f00">（其他字需要ttf字体支持）</font></td>
+				<td> (0,4]个中文</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>t2</td>
+				<td>string</td>
+				<td>英文问候语 （如：GOOD NIGHT）<font color="#f00">（早安图片不生效）</font></td>
+				<td> (0,10]个英文</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>t3</td>
+				<td>string</td>
+				<td>励志文字 <font color="#f00">（多余文字会自动丢弃）</font></td>
+				<td> (0,50]个中文</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>g1</td>
+				<td>float</td>
+				<td>外边框模糊度 <font color="#f00">（晚安图片不生效）</font></td>
+				<td>[0,6]</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>g2</td>
+				<td>float</td>
+				<td>背景图片糊度</td>
+				<td>[0,6]</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>mr</td>
+				<td>float</td>
+				<td>卡片大小 <font color="#f00">（晚安图片不生效）</font></td>
+				<td>[0,0.4]</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>na</td>
+				<td>int</td>
+				<td>上下白边透明度 <font color="#f00">（早安图片不生效）</font></td>
+				<td>[0,127]</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>cc</td>
+				<td>int</td>
+				<td>二维码内容</td>
+				<td>(0,6000]字符</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>cl</td>
+				<td>string</td>
+				<td>二维码中间log图片</td>
+				<td>URL</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>ct</td>
+				<td>string</td>
+				<td>二维码下方文字</td>
+				<td>[0,6]个中文</td>
+				<td>可空</td>
+			</tr>
+			<tr>
+				<td>ca</td>
+				<td>int</td>
+				<td>二维码透明度</td>
+				<td>[0,100]</td>
+				<td>可空</td>
+			</tr>
+		</table>
+
+
+
+		
+		<br><br><br>
+		
+		<form action="out_image.php" method="post">
+			
+			<input type="submit" style="background-color: coral; color: wheat; height: 40px;" class="inp" value="开始生成"><br><br><br>
+			
+			<b> 如有需要请修改以下参数 </b><br>
+			图片:img : <input type="text" class="inp" name="img"><br>
+			宽:w : <input type="number" class="inp" name="w" ><br>
+			宽:h : <input type="number" class="inp" name="h" ><br>
+			问候语:t1 : <input type="text" class="inp" name="t1" ><br>
+			英文问候语:t2 : <input type="text" class="inp" name="t2" ><br>
+			励志文字:t3 : <input type="text" class="inp" name="t3" ><br>
+			外边框模糊度:g1 : <input type="number" class="inp" name="g1" ><br>
+			背景图片糊度:g2 : <input type="number" class="inp" name="g2" ><br>
+			卡片大小:mr : <input type="number" class="inp" name="mr" ><br>
+			上下白边透明度:na : <input type="number" class="inp" name="na" ><br>
+			二维码内容:cc : <input type="text" class="inp" name="cc" ><br>
+			二维码中间log图片:cl : <input type="url" class="inp" name="cl" ><br>
+			二维码下方文字:ct : <input type="text" class="inp" name="ct" ><br>
+			二维码透明度:ca : <input type="number" class="inp" name="ca" ><br><br>
+		</form>
+
+
+
+
+
+
+
+
+
+
+	</body>
+</html>
