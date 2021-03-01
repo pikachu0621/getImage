@@ -149,7 +149,7 @@ function good_night(
 		                ['r'=>255,'g'=>255,'b'=>255,'a'=>40],
 		                $a_him_w,
 		                $rgb);
-		imagefilledrectangle($newimg,$d_x,$d_y,$d_x + $d_w,$d_y + $d_h,$f_color);//画矩形
+		//imagefilledrectangle($newimg,$d_x,$d_y,$d_x + $d_w,$d_y + $d_h,$f_color);//画矩形
 		$d_size =$a_w * 0.2;
 		$d_ttf = $GLOBALS['ttf_week'];
 		$d_color = ImageColorAllocate ($newimg,$rgb['r'], $rgb['g'], $rgb['b']); //字体颜色

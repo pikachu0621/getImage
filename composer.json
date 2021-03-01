@@ -1,5 +1,6 @@
 {
     "require": {
-        "endroid/qrcode": "^3.9"
+        "endroid/qrcode": "^3.9",
+      "ext-mysqli": "*"
     }
 }
