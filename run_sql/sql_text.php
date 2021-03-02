@@ -53,7 +53,7 @@ if($path == null || $path == ''){
 //echo $path.'<br>'.$type.'<br>'.$rgr.'<br>'.$nmr.'<br>'.$delelt.'<br><br><br>';
 //return;
 
-$sql_tool = new MySqlTool();
+$sql_tool = new MySqlTool('../sql/'.$GLOBALS['mydata'].'.sql');
 list_file($path);
 $_GET['path'] = null;
 $path = null;
@@ -65,7 +65,6 @@ function list_file($date){
 	global $delelt;
 	global $rgr;
 	global $nmr;
-	global $delelt;
 	global $sql_tool;
 	
 	if( !file_exists ($date) ){
@@ -80,32 +79,63 @@ function list_file($date){
 	$rgr = str_replace('\n',"[pk]",$rgr);
 	$flie_context_one = explode($rgr , $flie_context);
 	
+	
+	$rf = $flie_context;
+	$cg = 0;
+	$sb = 0;
+	$gx = 0;
+	
 	foreach ($flie_context_one as $_value){
 		
+		/* $strlen = mb_strlen($_value,'utf8');
+		echo 'UU---'.$strlen."----".$_value."<br>";
+		continue; */
+		
+		$strlen = mb_strlen($_value,'utf8');
+		if($strlen <= 1 || $_value == "" || $_value == ' ' ) continue;
 		
 		$ass = str_split_unicode($_value, 12);
-		$strr =  mb_strlen($_value,'utf8') > 12 ? $ass[0].'....' : $_value ;
+		$strr =  $strlen > 12 ? $ass[0].'....' :$_value ;
 		
 		if( mb_strlen($_value,'utf8') <= $nmr){
 			$re =  $sql_tool->insert_text($type,$_value);
 			if($re == -2){
 				to_html($strr.' ---> 更新失败',"#F00");
+				$sb ++;
 			}else if($re == -1){
 				to_html($strr.' ---> 导入失败',"#F00");
+				$sb ++;
 			}else if($re == 0){
 				to_html(' ---> 数据库连接失败 <---',"#F00");
+				$sb ++;
 			}else if($re == 1){
 				if($delelt)
-					str_replace($flie_context,$_value.$rgr,"");
+					$rf = str_replace($_value.$rgr,"",$rf);
 				to_html($strr.' ---> 导入成功',"#0F0");
+				$cg ++;
 			}else if($re == 2){
 				to_html($strr.' ---> 已存在',"#F90");
+				$sb ++;
 			}else if($re == 3){
 				to_html($strr.' ---> 更新成功',"#00F");
+				$gx ++;
 			}
-		}else to_html($strr . ' ---> 超出'.$nmr.'字',"#f00");
-		
+		}else {
+			to_html($strr . ' ---> 超出'.$nmr.'字',"#f00");
+			$sb ++;
+		}
 	}
+	
+	if($delelt){
+		$rf = str_replace("[pk]","\n",$rf);
+		file_put_contents($date, $rf);
+	}
+	
+	
+	
+	to_html( '<br><br>[本次导入'.$cg.'条&emsp;&emsp;更新'.$gx.'条&emsp;&emsp;失败'.$sb.'条]',"#000");
+		
+	
 	//导入完成是否删除
 	/* if($delelt){
 		chmod($date,0777); 

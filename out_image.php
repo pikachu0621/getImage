@@ -35,7 +35,7 @@ function out_image(
 		$code_atb = $code_atb == null  ? $GLOBALS['code_atb'] : $code_atb;
 	}
 	
-	$sql_tool =  new MySqlTool();
+	$sql_tool =  new MySqlTool('sql/'.$GLOBALS['mydata'].'.sql');
 	ob_start(); //启用输出缓冲
 	mb_internal_encoding("UTF-8");
 	$h=date('H');
@@ -71,6 +71,9 @@ function out_image(
 	}else{
 		
 		$arr = $sql_tool->get_content(1);
+		/* print_r($arr);
+		return; */
+		
 		$img = $img == null || $img == '' ? ($arr['path'] == null || $arr['path'] == '' ?  $GLOBALS['night_img'] : $arr['path'] ) : $img;
 		$text3 = $text3 == null ||  $text3 == '' ? ($arr['context'] == null || $arr['context'] == '' ? $GLOBALS['night_text3'] : $arr['context'] ) :  $text3;
 		

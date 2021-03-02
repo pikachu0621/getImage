@@ -7,7 +7,7 @@ class MySqlTool{
 	/**
 	*连接数据库 
 	*/
-	public function __construct(){	
+	public function __construct($sqlpath){	
 		@$this->conn= mysqli_connect ($GLOBALS['servername'], 
 									$GLOBALS['username'], 
 									$GLOBALS['password']);
@@ -21,7 +21,7 @@ class MySqlTool{
 				$sql = "CREATE DATABASE ".$GLOBALS['mydata'];
 				if ($this->conn->query($sql)) {
 					mysqli_select_db( $this->conn ,$GLOBALS['mydata']);
-					$_sql = file_get_contents('sql/'.$GLOBALS['mydata'].'.sql');
+					$_sql = file_get_contents($sqlpath);
 					$_arr = explode(';', $_sql);
 					foreach ($_arr as $_value){
 						if($_value != "" && $_value!=null && $_value != " " && $_value != ";" ){
@@ -41,30 +41,47 @@ class MySqlTool{
 		
 		if($this->conn == null)
 			return false;
-		
+		/* 
 		$result_1 = mysqli_query($this->conn,'SELECT * 
 									FROM text AS t1 JOIN (SELECT ROUND(RAND() * (SELECT MAX(id) FROM text)) AS id) AS t2  
 									WHERE t1.id >= t2.id 
 									AND t1.type = '.$type.' 
-									ORDER BY t1.id ASC LIMIT 1;');
-		$row_1 =mysqli_fetch_assoc($result_1);//查询
+									ORDER BY t1.id ASC LIMIT 1;'); */
+		$result_1 = mysqli_query($this->conn,'SELECT * FROM text WHERE type = '.$type);
+		//$row_1 =mysqli_fetch_assoc($result_1);//查询
+		$arr_1 = array();
+		while( $row_1 = mysqli_fetch_assoc($result_1) ){
+			array_push($arr_1,$row_1);
+		}
+		/* 
+		print_r($arr_1);
+		return; */
 		
-		$result_2 = mysqli_query($this->conn,'SELECT * 
+		
+		
+		
+		/* $result_2 = mysqli_query($this->conn,'SELECT * 
 									FROM image AS t1 JOIN (SELECT ROUND(RAND() * (SELECT MAX(id) FROM image)) AS id) AS t2 
 									WHERE t1.id >= t2.id 
 									AND t1.type = '.$type.' 
-									ORDER BY t1.id ASC LIMIT 1;');
-		$row_2 =mysqli_fetch_assoc($result_2);//查询 
+									ORDER BY t1.id ASC LIMIT 1;'); */
+		$result_2 = mysqli_query($this->conn,'SELECT * FROM image WHERE type = '.$type);
+		//$row_2 =mysqli_fetch_assoc($result_2);//查询 
+		$arr_2 = array();
+		while( $row_2 = mysqli_fetch_assoc($result_2) ){
+			array_push($arr_2,$row_2);
+		}
+		
 		
 		//print_r( $row_1);
 		$this->set_sqlend();
 		
-		$trun_1 = $row_1['content'];
-		if ($row_1==null||$row_1==""||sizeof($row_1)<=0) {
+		$trun_1 = $arr_1[rand(0,sizeof($arr_1))]['content'];
+		if ($arr_1==null||$arr_1==""||sizeof($arr_1)<=0) {
 			$trun = null;
 		}
-		$trun_2 = $GLOBALS['image_path'].$row_2['image'];
-		if($row_2==null||$row_2==""||sizeof($row_2)<=0){
+		$trun_2 = $GLOBALS['image_path'].$arr_2[rand(0,sizeof($arr_2))]['image'];
+		if($arr_2==null||$arr_2==""||sizeof($arr_2)<=0){
 			$trun_2 = null;
 		}
 		return array('context'=>$trun_1,'path'=>$trun_2);

@@ -8,7 +8,10 @@
 	</head>
 		<body>
 			<b> 图片批量导入  </b> <br>
-			<font> 只支持本地导入（相对路径，绝对路径，都可以）</font><br><br>
+			<font> 只支持本地导入（相对路径，绝对路径，都可以）</font><br>
+			<a href="https://wallhaven.cc/search?q=morning"> 早晨图片 </a>&emsp;&emsp;
+			<a href="https://wallhaven.cc/search?q=night"> 夜晚图片 </a><br><br>
+			
 			<form action="sql_image.php" method="get">
 				文件夹名: <input type="text" style="width: 100%; height:26px;" name="path" value="mooring_img"><br>
 				<input type="radio"  name="type" value="0" checked >导入成早安
@@ -45,7 +48,7 @@ if($path == null || $path == ''){
 	to_html("无效路径","#f00");
 	return;
 }
-$sql_tool = new MySqlTool();
+$sql_tool = new MySqlTool('../sql/'.$GLOBALS['mydata'].'.sql');
 list_file($path);
 $_GET['path'] = null;
 $path = null;
