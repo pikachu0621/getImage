@@ -233,6 +233,8 @@ function good_night(
 			$code_x = $resize_width - $code_w - $px * 2;
 			$code_y =  $lin_y - $code_h - $px * 2;
 			
+			if($logArg == null || $logArg == '')
+				$logArg = 100;
 			imagecopymerge($newimg, $newimg_code,
 				$code_x, $code_y, 0, 0, $code_w, $code_h, $logArg);// 向原图片添加二维码
 		}
@@ -348,6 +350,8 @@ function good_mooring(
 		$code_h = imagesy($newimg_code);
 		$code_x = $x_1 + $code_w * 0.24 ;
 		$code_y =  $y_1 + $m_h - $code_h - $code_w * 0.22;
+		if($logArg == null || $logArg == '')
+			$logArg = 100;
 		imagecopymerge($newimg, $newimg_code,
 			$code_x, $code_y, 0, 0, $code_w, $code_h, $logArg);// 向原图片添加二维码
 	}

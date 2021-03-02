@@ -56,7 +56,7 @@
 	//二维码水映默认值
 	$GLOBALS['code_open'] = true;                              // 是否设置当get没有值时启用此配置  （false 不启用）
 	$GLOBALS['code_content'] = 'http://pikachu.org.cn';        // 扫描后的内容                   （null 不添加 这个没有则不添加二维码）
-	$GLOBALS['code_log_img'] = 'image/find/log.png';                 // 二维码中间log图片               （null 不添加 , 支持http/https）
+	$GLOBALS['code_log_img'] = 'image/find/log.png';           // 二维码中间log图片               （null 不添加 , 支持http/https）
 	$GLOBALS['code_text'] = 'PIKACHU';                         // 二维码下方文字                  （null 不添加 , 中文 3 ~ 6 个字为佳）
 	$GLOBALS['code_atb'] = 100;                                // 二维码透明度                   （0~100  数越大越不透明）
 ?>
