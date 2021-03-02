@@ -12,7 +12,7 @@
 	$GLOBALS['image_path'] = "image/";
 	
 	//早安图片显示时间段
-	$GLOBALS['date_mooring'] = ['start'=> 5, 'stop'=> 13 ];    //24小时格式
+	$GLOBALS['date_mooring'] = ['start'=> 5, 'stop'=> 12 ];    //24小时格式
 	
 	//祝福语长度 （0个字 ~ 60个字）
 	$GLOBALS['text_length'] = 60;                            //祝福语长度 （0个字 ~ 60个字） 
