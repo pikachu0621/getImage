@@ -39,7 +39,7 @@
 	$GLOBALS['mooring_h'] = 1920;                              // 图片高                        （最好高清  高度小于800最好别用二维码）
 	$GLOBALS['mooring_text1'] = "早上好鸭";                     // 早安问候语                     （需要字体支持）
 	$GLOBALS['mooring_text2'] = "你浅浅的微笑，\n是一首纯真的抒情诗，\n是一支幽婉的小夜曲。\n早安！";     //祝福语  （60个中文字左右）
-	$GLOBALS['mooring_img_gs'] = 6;                            // 外框图片模糊度                 （0 ~ 10）
+	$GLOBALS['mooring_img_gs'] = 0;                            // 外框图片模糊度                 （0 ~ 10）
 	$GLOBALS['mooring_img_mgs'] = 0;                           // 内框图片模糊度                 （0 ~ 10）
 	$GLOBALS['mooring_ratio'] = 0.1;                           // 卡片大小                      （0 ~ 0.3）
 	
