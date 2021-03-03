@@ -80,7 +80,7 @@ function out_image(
 		//$img = $img == null || $img == '' ? $GLOBALS['night_img'] : $img;
 		$width = $width == null || $width == 0 ? $GLOBALS['night_w'] : $width;
 		$height =  $height == null ||  $height == 0 ? $GLOBALS['night_h'] : $height;
-		$img_gs_1 = $img_gs_1 == null  ? $GLOBALS['night_img_gs'] : $img_gs_1;
+		$img_gs_2 = $img_gs_2 == null  ? $GLOBALS['night_img_gs'] : $img_gs_2;
 		$night_atb = $night_atb == null ? $GLOBALS['night_atb'] : $night_atb;
 		$text1 = $text1 == null || $text1 == '' ? $GLOBALS['night_text1'] : $text1;
 		$text2 = $text2 == null || $text2 == '' ? $GLOBALS['night_text2'] : $text2;
@@ -88,7 +88,7 @@ function out_image(
 		
 		$newimg = good_night(
 			$img, $width,$height, 
-			$img_gs_1,$night_atb,
+			$img_gs_2,$night_atb,
 			$text1,$text2,$text3,
 			$code_content, $code_log_img ,$code_text,$code_atb);
 	}
