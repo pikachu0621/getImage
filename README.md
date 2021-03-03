@@ -28,7 +28,7 @@ PHP早晚安图片生成
 ===
 |早安图片|晚安图片|
 |:---:|:---:|
-| ![](/logs/moring.jpg) | ![](/logs/night.jpg) |
+| ![](logs/moring.jpg) | ![](logs/night.jpg) |
 
 By: Pikachu_WeChat
 ===
