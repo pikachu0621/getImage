@@ -22,7 +22,7 @@ PHP早晚安图片生成
 
 预览地址
 ---
-[PHP早晚安图片生成](http://pkpk.run/to_image/)
+[PHP早晚安图片生成](http://42.192.221.73/to_image/)
 
 效果图
 ===
